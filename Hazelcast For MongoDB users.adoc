@@ -1,0 +1,33 @@
+= Hazelcast for MongoDB Developers
+Viktor Gamov <viktor@hazelcast.com>, © 2015 Hazelcast, Inc.
+2015-11-02
+:revdate: 2015-11-02 16:31:53 -0600
+:linkattrs:
+:ast: &ast;
+:y: &#10003;
+:n: &#10008;
+:y: icon:check-sign[role="green"]
+:n: icon:check-minus[role="red"]
+:c: icon:file-text-alt[role="blue"]
+:toc: auto
+:toc-placement: auto
+:toc-position: right
+:toc-title: Table of content
+:toclevels: 3
+:idprefix:
+:idseparator: -
+:sectanchors:
+:icons: font
+:source-highlighter: highlight.js
+:highlightjs-theme: idea
+:experimental:
+
+Preamble of a document
+
+toc::[]
+
+
+
+== BSON
+The BSON library comprehensively supports BSON, the data storage and network transfer format that MongoDB uses for documents". 
+BSON, short for Binary JSON, is a binary-encoded serialization of JSON-like documents.
