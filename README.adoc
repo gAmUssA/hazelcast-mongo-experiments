@@ -27,33 +27,6 @@ Here is an example how to quickly start a new Hazelcast Project with Gradle.
 toc::[]
 
 
-== How To Use
-
-. Clone this repository
-+
-
-----
-git clone git@github.com:hazelcast/hazelcast-gradle-starter.git
-----
-
-. Remove Hazelcast's origin
-+
-
-----
-git remote remove origin
-----
-
-. Add YOUR own `origin` and start coding
-+
-
-----
-git remote add origin https://github.com/awesome_user/awesome_project
-----
-
-. PROFIT!!!
-+
-
-image::http://www.chicagonow.com/swirleytime/files/2014/05/dance21.gif[]
 
 == What's in a box?
 

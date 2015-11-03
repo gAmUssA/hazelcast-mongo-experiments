@@ -1,4 +1,4 @@
-plugins{
+plugins {
     id 'java'
     id 'idea'
     id 'eclipse'
@@ -6,11 +6,11 @@ plugins{
     id 'com.github.johnrengelman.shadow' version '1.2.2'
 }
 
-group = 'com.hazelcast.starter'
+group = 'com.hazelcast.mongo'
 version = '1.0-SNAPSHOT'
 
 description = """
-Hazelcast Starter project for Gradle Users
+Hazelcast Mongo Experiments
 """
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -55,8 +55,20 @@ dependencies {
     // JCache dependency
     compile "javax.cache:cache-api:1.0.0"
 
+    // Mongo BSON serialization
+    compile 'org.mongodb:bson:3.0.3'
+
+    //bson4jackson
+    compile 'de.undercouch:bson4jackson:2.5.0'
+
     // Hazelcast Test Support
-    testCompile "com.hazelcast:hazelcast:$HZ_VERSION:tests"
+    compile "com.hazelcast:hazelcast:$HZ_VERSION:tests"
+
+    // Loader support - AsyncMapStreamer
+    compile("com.hazelcast.simulator:simulator:0.6") {
+        // TODO exclude extra stuff
+        //transitive = false
+    }
 }
 
 task collectJars(type: Copy) {
