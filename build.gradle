@@ -56,7 +56,8 @@ dependencies {
     compile "javax.cache:cache-api:1.0.0"
 
     // Mongo BSON serialization
-    compile 'org.mongodb:bson:3.0.3'
+    compile 'org.mongodb:bson:3.0.4'
+    compile 'org.mongodb:mongodb-driver:3.0.4'
 
     //bson4jackson
     compile 'de.undercouch:bson4jackson:2.5.0'
