@@ -22,12 +22,52 @@ Viktor Gamov <viktor@hazelcast.com>, © 2015 Hazelcast, Inc.
 :highlightjs-theme: idea
 :experimental:
 
-Preamble of a document
+When I talk to the developers about Hazelcast many of them ask how Hazelcast is different from NOSQL databases, and particularly from MongoDB. In this blog post I will try to answer this question once and for all. 
 
 toc::[]
 
+== Introduction
+
+Let's start with definitions ...
+
+MongoDB is an open source, document-oriented database designed with both scalability and developer agility in mind. Instead of storing your data in tables and rows as you would with a relational database, in MongoDB you store JSON-like documents with dynamic schemas.
+
+NOTE: BSON, short for Binary JSON, is a binary-encoded serialization of JSON-like documents.
+
+Hazelcast is an open source (Apache v2 license), distributed, highly available and scalable *In-Memory Data Grid* used as an in-memory data store, cache, message broker and distributed computation platform. 
+
+Mongodb is a NOSQL datastore, primarily concerned with storing/persisting and retrieving schema-free data. 
+Hazelcast is an In-Memory data grid with an emphasis on high-speed access to distributed data (usually as a distributed cache), distributed computing and distributed messaging. 
+Hazelcast can act like a https://hazelcast.com/use-cases/nosql/nosql-data-store/[NOSQL store], but that isn't its primary focus. 
+Mongodb has some data grid / compute-grid capabilities, but isn't optimized for it. 
+As such, comparing Hazelcast and MongoDB head-to-head on capabilities is a bit like comparing apples and oranges.
+
+But Hazelcast and MongoDB can work together, rather than compete. Hazelcast  supports using MongoDB as a backend data store. It's easy to map Hazelcast data to MongoDB for write-through or write-behind persistence.
+
+== Simplicity 
+
+Both technologies are simple to get started with. 
+I was able to get MongoDB up and running in less than ten minutes. 
+On my mac I can install MongoDВ with command 
+
+----
+brew mongo install
+----
+
+http://hazelcast.org/getting-started/[Hazelcast is similarly easy]. They both have very intuitive, straight-forward interfaces.
+
+== Java
+
+If you're writing a Java application (or any of the various languages that run on the JVM), Hazelcast fits into your ecosystem extremely well.
+Being able to use Java objects directly into the cluster without worrying about a data translation layer is a big productivity bonus. 
+Working with MongoDB requires either using their data structures or writing/configuring a data translation layer.
+
+NOTE: _TBD_ Add explanation bson
 
 
-== BSON
-The BSON library comprehensively supports BSON, the data storage and network transfer format that MongoDB uses for documents". 
-BSON, short for Binary JSON, is a binary-encoded serialization of JSON-like documents.
+== Summary
+
+Mongodb and Hazelcast can both provide low-latency access to distributed, schema-free data.
+Mongodb is more suitable if what you're really looking for is just a NOSQL data store. 
+Hazelcast's distributed data structures and computing capabilities lend themselves to a host of applications beyond what MongoDB is capable of. 
+They can be used separately as solutions for different problems or together as a complementary set of technologies.
