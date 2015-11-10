@@ -22,25 +22,22 @@ Viktor Gamov <viktor@hazelcast.com>, © 2015 Hazelcast, Inc.
 :highlightjs-theme: idea
 :experimental:
 
-When I talk to the developers about Hazelcast on many https://hazelcast.com/company/events/[events] many of them ask how Hazelcast is different from NOSQL databases, and particularly from MongoDB. In this blog post I will try to answer this question once and for all. 
+When I talk to the developers about Hazelcast, many of them ask how Hazelcast is different from NOSQL databases, and particularly from MongoDB. 
+In this blog post, I will try to answer this question once and for all.
 
 toc::[]
 
 == Introduction
 
-*MongoDB* is an open source, document-oriented database designed with both scalability and developer agility in mind. Instead of storing your data in tables and rows as you would with a relational database, in MongoDB you store JSON-like documents with dynamic schema.
-In short, MongoDB is a NOSQL data store, primarily concerned with storing/persisting and retrieving schema-free data. 
+*MongoDB* is an open source, document-oriented database designed with both scalability and developer agility in mind. Instead of storing your data in tables and rows as you would with a relational database, in MongoDB you store JSON-like documents with a dynamic schema. 
+In short, MongoDB is an NOSQL data store, primarily concerned with storing/persisting and retrieving schema-free data.
 
-*Hazelcast* is an open source (Apache v2 license), distributed, highly available and scalable *In-Memory Data Grid* used as an in-memory data store, cache, message broker and distributed computation platform. 
-Hazelcast has an emphasis on high-speed access to distributed data (usually as a distributed cache), distributed computing and distributed messaging. 
+Hazelcast is an open source (Apache v2 license), distributed, highly available and scalable In-Memory Data Grid used as an in-memory data store, cache, message broker and distributed computation platform. 
+Hazelcast emphasizes high-speed access to distributed data (usually as a distributed cache), distributed computing and distributed messaging. 
 
-Hazelcast can act like a https://hazelcast.com/use-cases/nosql/nosql-data-store/[NOSQL store].
-Mongodb has some data grid / compute-grid capabilities, but isn't optimized for it. 
-As such, comparing Hazelcast and MongoDB head-to-head on capabilities is a bit like comparing apples and oranges.
+https://hazelcast.com/use-cases/nosql/nosql-data-store/[Hazelcast can act like an NOSQL store]. MongoDB has some data grid / compute grid capabilities, but it isn't optimized. As such, comparing Hazelcast and MongoDB head-to-head on capabilities is a bit like comparing apples and oranges.
 
-But Hazelcast and MongoDB can work together, rather than compete. 
-Hazelcast supports using MongoDB as a backend data store. 
-It's easy to map Hazelcast data to MongoDB for write-through or write-behind persistence.
+Often Hazelcast and MongoDB work together, rather than compete. Hazelcast supports using MongoDB as a backend data store. It's easy to map Hazelcast data to MongoDB for write-through or write-behind persistence.
 
 Let's overview Hazelcast and MongoDB features and see how they can compliment each other.
 
@@ -48,7 +45,7 @@ Let's overview Hazelcast and MongoDB features and see how they can compliment ea
 
 === Simplicity 
 
-Both technologies are simple to get started with. 
+Both technologies are simple to get running.
 I was able to get MongoDB up and running in less than ten minutes. 
 For example, on my mac I can install MongoDВ with command using *http://brew.sh[`brew`]*.
 
@@ -61,37 +58,41 @@ http://hazelcast.org/getting-started/[Hazelcast is similarly easy].
 === The Benefits For Java Developers
 
 If you're writing a Java application (or any of the various languages that run on the JVM), Hazelcast and MongoDB fit into your ecosystem extremely well.
-For Hazelcast, being able to use Java objects directly into the cluster without worrying about a data translation layer is a big productivity bonus. 
+For Hazelcast, being able to use Java objects directly in the cluster without worrying about a data translation layer is a big productivity bonus. 
 Working with MongoDB requires either using their data structures or writing/configuring a data translation layer.
 
 NOTE: The BSON library comprehensively supports BSON, the data storage and network transfer format that MongoDB uses for "documents". BSON, short for Binary JSON, is a binary-encoded serialization of JSON-like documents.
 
-MongoDB ships with driver for Java. Also, there is a Java Object Document Mapper framework that make translation from Mongo documents to Java objects and vise-versa much easier.
+MongoDB ships with a driver for Java. 
+Also, there is a Java Object Document Mapper framework that makes the translation from Mongo documents to Java objects and vise-verse much easier.
 
-In terms of deployment and integration in Java applications, Hazelcast can give you very low latency data access through various mechanisms, especially Near Cache on Hazelcast clients and embedded deployment of Hazelcast members.
-With Mongodb, it's always have network latency will be involved, since it doesn't have a local-memory cache.
+In terms of deployment and integration in Java applications, Hazelcast can give you very low latency data access through various mechanisms, especially Near Cache on Hazelcast clients and embedded deployment of Hazelcast members. With MongoDB, network latency will be experienced, since it doesn’t have a local memory cache.
 
 === Distributed  Computing
 
-Hazelcast's distributed computing framework is extremely powerful, allowing arbitrary business logic to execute with locality of reference and to be distributed across the cluster for straightforward scale-out support.
-MongoDB supports a single-threaded map-reduce framework, but doesn't really support arbitrary user code execution.
+Hazelcast's distributed computing framework is extremely powerful. 
+It allows arbitrary business logic to execute with the locality of reference, and be distributed across the cluster for straightforward scale-out support. 
+MongoDB supports a single-threaded map-reduce framework but doesn't support arbitrary user code execution.
 
-Hazelcast's support for distributed computing gives it capabilities that MongoDB just doesn't have. Distributed concurrency tools like locks, semaphores, and queues make short work of coordinating computation on multiple nodes that is very difficult to implement natively. 
-I know that many people use MongoDB as their message broker. However, I can't imagine how one does any of those things practically using just MongoDB.
+Hazelcast's support for distributed computing gives it capabilities that MongoDB just doesn't have. 
+Distributed concurrency tools like locks, semaphores, and queues make short work of coordinating computation on multiple nodes that is very difficult to implement natively. 
+I know that many people use MongoDB as their message broker. 
+However, I can't imagine how one does any of those things practically using just MongoDB.
 
 === Persistence 
 
-Hazelcast is focused on low-latency access to distributed data and distributed computing. By default, it doesn't touch a disk or any other persistent store. Hazelcast isn't really a database. 
-Mongodb is very much a persistent database. It has its issues with persistence (e.g., it can be a bit fragile since it writes to memory and, by default, doesn't sync to the file system on every write. but, that's really getting into the weeds). 
+Hazelcast is focused on low-latency access to distributed data and distributed computing. 
+By default, it doesn't touch a disk or any other persistent store. Hazelcast isn’t a database. MongoDB is very much a persistent database. It has its issues with persistence (e.g., it can be a bit fragile since it writes to memory and, by default, doesn’t sync to the file system on every write).
 
-Let's take a look how we can benefit from MongoDB persistence in our Hazelcast database.
+Let's take a look how we can benefit from MongoDB persistence with Hazelcast.
 
 _Code examples and etx TBD_
 
 == Summary
 
-Mongodb and Hazelcast can both provide low-latency access to distributed, schema-free data.
-Mongodb is more suitable if what you're really looking for is just a NOSQL data store. 
-Hazelcast's distributed data structures and computing capabilities lend themselves to a host of applications beyond what MongoDB is capable of. 
-They can be used separately as solutions for different problems or together as a complementary set of technologies.
-I hope in this blog post I answered most of the questions about Hazelcast v. MongoDB. If I didn't, please, ask me in a comments below.
+MongoDB and Hazelcast can both provide low-latency access to distributed, schema-free data. 
+MongoDB is more suitable if you're just looking for an NOSQL data store. 
+Hazelcast's distributed data structures, and computing capabilities lend themselves to a host of applications beyond what MongoDB is capable. 
+They can be used separately as solutions for different problems or together as a complementary set of technologies. 
+I hope in this blog post I answered most of the questions about Hazelcast v. MongoDB. 
+If I didn't, please, ask me in the comments below.
